@@ -1,12 +1,10 @@
 from rest_framework import serializers
-from .models import Category, Product
+from .models import Category, Product, Customer
 
-
-class CategorySerializer(serializers.ModelSerializer):
+class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
-        fields = ['id', 'name', 'description']
-
+        model = Customer
+        fields = ['id', 'name', 'email', 'phone_number', 'address']
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
@@ -21,3 +19,7 @@ class ProductSerializer(serializers.ModelSerializer):
         if value < 0:
             raise serializers.ValidationError("Stock quantity cannot be negative.")
         return value
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'description']
